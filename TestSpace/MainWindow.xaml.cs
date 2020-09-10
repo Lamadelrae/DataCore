@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MoRM.Create;
+using MoRM.Read;
 using MoRM.Entity;
 
 namespace TestSpace
@@ -35,11 +36,20 @@ namespace TestSpace
                 TableName = "Matthew",
                 Column = new List<MoRMColumn>
                 {
-                    new MoRMColumn { ColumnName = "HelloWorld", ColumnType = "varchar", ColumnSize = 30},
-                    new MoRMColumn { ColumnName = "HelloWorld", ColumnType = "varchar", ColumnSize = 30},
-                    new MoRMColumn { ColumnName = "HelloWorld", ColumnType = "varchar", ColumnSize = 30},
+                    new MoRMColumn { ColumnName = "HelloWorld"},
+                    new MoRMColumn { ColumnName = "HelloWorld"},
+                    new MoRMColumn { ColumnName = "HelloWorld" }
+                },
+                TableJoin = new List<MoRMJoin>
+                { 
+                    new MoRMJoin { TableName = "Matthew", TableJoin = "Carol", TableNameIndex = "IdMatthew", TableJoinIndex = "IdCarol"}
+                },
+                TableTypes = new MoRMTypes 
+                {
+                    isJoin = false,
+                    isSeparteSelect = false
                 }
-            }.CreateTable();
+            }.SelectTable();
 
             var debug = Table;
         }

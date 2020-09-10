@@ -12,33 +12,40 @@ namespace MoRM.Create
     {
         public static string CreateTable(this MormTable Table)
         {
-            string TableNamePurified = Regex.Replace(Table.TableName, @"[^0-9a-zA-Z:,]+", "");
-
-            string BaseQuery = $"CREATE TABLE @{TableNamePurified} ( ";
-            
-            var Query = new StringBuilder();
-
-            Query.Append(BaseQuery);
-
-            foreach(var Column in Table.Column)
+            try
             {
-                string ColumnName = Regex.Replace(Column.ColumnName, @"[^0-9a-zA-Z:,]+", "");
-                string ColumnType = Regex.Replace(Column.ColumnType, @"[^0-9a-zA-Z:,]+", "");
-                int ColumnSize = Column.ColumnSize;
+                string TableNamePurified = Regex.Replace(Table.TableName, @"[^0-9a-zA-Z:,]+", "");
 
-                string ColumnString = $" @{ColumnName} {ColumnType}({ColumnSize}), ";
+                string BaseQuery = $"CREATE TABLE @{TableNamePurified} ( ";
 
-                Query.Append(ColumnString);
+                var Query = new StringBuilder();
+
+                Query.Append(BaseQuery);
+
+                foreach (var Column in Table.Column)
+                {
+                    string ColumnName = Regex.Replace(Column.ColumnName, @"[^0-9a-zA-Z:,]+", "");
+                    string ColumnType = Regex.Replace(Column.ColumnType, @"[^0-9a-zA-Z:,]+", "");
+                    int ColumnSize = Column.ColumnSize;
+
+                    string ColumnString = $" @{ColumnName} {ColumnType}({ColumnSize}), ";
+
+                    Query.Append(ColumnString);
+                }
+
+                if (Query.ToString().EndsWith(", "))
+                    Query.Remove(Query.Length - 2, 2);
+
+                string EndQuery = " )";
+
+                Query.Append(EndQuery);
+
+                return Query.ToString();
             }
-
-            if (Query.ToString().EndsWith(", "))
-                Query.Remove(Query.Length - 2, 2);
-
-            string EndQuery = " )";
-
-            Query.Append(EndQuery);
-
-            return Query.ToString();
+            catch(Exception)
+            {
+                return string.Empty;
+            }
         }
     }
 }

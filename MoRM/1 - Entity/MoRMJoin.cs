@@ -6,11 +6,14 @@ using System.Threading.Tasks;
 
 namespace MoRM.Entity
 {
-    public class MormTable
+    public class MoRMJoin
     {
         public string TableName { get; set; }
-        public MoRMTypes TableTypes { get; set; }
-        public List<MoRMJoin> TableJoin { get; set; }
-        public List<MoRMColumn> Column { get; set; }
+
+        public string TableJoin { get; set; }
+
+        public string TableNameIndex { get; set; }
+
+        public string TableJoinIndex { get; set; }
     }
 }
