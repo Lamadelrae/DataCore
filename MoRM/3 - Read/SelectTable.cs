@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MoRM.Entity;
+using MQB.Entity;
 
 namespace MoRM.Read
 {
     public static class SelectTables
     {
-        public static string SelectTable(this MormTable Table)
+        public static string SelectTable(this MQBTable Table)
         {
             try
             {

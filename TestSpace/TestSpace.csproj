@@ -95,9 +95,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MoRM\MoRM.csproj">
+    <ProjectReference Include="..\MoRM\MQB.csproj">
       <Project>{2db951f5-8d26-467f-a6d2-359d590b9e37}</Project>
-      <Name>MoRM</Name>
+      <Name>MQB</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

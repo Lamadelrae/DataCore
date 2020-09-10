@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MoRM.Entity
+namespace MQB.Entity
 {
-    public class MoRMJoin
+    public class MQBJoin
     {
         public string TableName { get; set; }
 

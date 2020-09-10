@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MoRM.Entity
+namespace MQB.Entity
 {
-    public class MoRMCondition
+    public class MQBCondition
     {
         public string ConditionName { get; set; }
 

@@ -1,4 +1,4 @@
-﻿using MoRM.Entity;
+﻿using MQB.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,11 +6,11 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace MoRM.Create
+namespace MQB.Create
 {
     public static class CreateTables
     {
-        public static string CreateTable(this MormTable Table)
+        public static string CreateTable(this MQBTable Table)
         {
             try
             {

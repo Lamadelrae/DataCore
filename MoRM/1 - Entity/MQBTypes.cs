@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MoRM.Entity
+namespace MQB.Entity
 {
-    public class MoRMTypes
+    public class MQBTypes
     {
-        public enum MoRMCrudTypes
+        public enum MQBCrudTypes
         {
             Create,
             Select,
