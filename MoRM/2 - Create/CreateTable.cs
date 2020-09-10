@@ -32,7 +32,7 @@ namespace MoRM.Create
             }
 
             if (Query.ToString().EndsWith(", "))
-                Query.Remove(Query.ToString().Length -1, 2);
+                Query.Remove(Query.Length - 2, 2);
 
             string EndQuery = " )";
 
