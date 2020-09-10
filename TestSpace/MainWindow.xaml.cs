@@ -40,14 +40,22 @@ namespace TestSpace
                     new MoRMColumn { ColumnName = "HelloWorld"},
                     new MoRMColumn { ColumnName = "HelloWorld" }
                 },
-                TableJoin = new List<MoRMJoin>
+                Join = new List<MoRMJoin>
                 { 
                     new MoRMJoin { TableName = "Matthew", TableJoin = "Carol", TableNameIndex = "IdMatthew", TableJoinIndex = "IdCarol"}
                 },
+                Condition = new List<MoRMCondition>
+                {
+                    new MoRMCondition { ConditionName = "CarolName", ConditionValue = "32323"},
+                    new MoRMCondition { ConditionName = "Aassa", ConditionValue = "3232"},
+                    new MoRMCondition { ConditionName = "saasas", ConditionValue = "4343"},
+                    new MoRMCondition { ConditionName = "sasa", ConditionValue = "TESSS"}
+                },
                 TableTypes = new MoRMTypes 
                 {
-                    isJoin = false,
-                    isSeparteSelect = false
+                    isJoin = true,
+                    isSeparteSelect = true,
+                    isConditioned = true
                 }
             }.SelectTable();
 

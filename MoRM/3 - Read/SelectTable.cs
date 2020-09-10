@@ -40,7 +40,7 @@ namespace MoRM.Read
 
                 if (Table.TableTypes.isJoin)
                 {
-                    foreach (var JoinObj in Table.TableJoin)
+                    foreach (var JoinObj in Table.Join)
                     {
                         string JoinString = $"JOIN {JoinObj.TableJoin} ON {JoinObj.TableName}.{JoinObj.TableNameIndex} = {JoinObj.TableJoin}.{JoinObj.TableNameIndex} ";
 
@@ -50,7 +50,19 @@ namespace MoRM.Read
 
                 if (Table.TableTypes.isConditioned)
                 {
+                    string BaseConditionString = "WHERE ";
 
+                    Base.Append(BaseConditionString);
+
+                    foreach (var Condition in Table.Condition)
+                    {
+                        string ConditionString = $"{Condition.ConditionName} = '{Condition.ConditionValue}' AND ";
+
+                        Base.Append(ConditionString);
+                    }
+
+                    if (Base.ToString().EndsWith("AND "))
+                        Base.Remove(Base.Length - 4, 3);
                 }
 
                 return Base.ToString();

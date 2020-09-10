@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="1 - Entity\MoRMColumn.cs" />
+    <Compile Include="1 - Entity\MoRMCondition.cs" />
     <Compile Include="1 - Entity\MoRMJoin.cs" />
     <Compile Include="1 - Entity\MoRMTable.cs" />
     <Compile Include="1 - Entity\MoRMTypes.cs" />

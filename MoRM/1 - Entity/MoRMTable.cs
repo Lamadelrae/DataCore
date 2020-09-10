@@ -10,7 +10,8 @@ namespace MoRM.Entity
     {
         public string TableName { get; set; }
         public MoRMTypes TableTypes { get; set; }
-        public List<MoRMJoin> TableJoin { get; set; }
+        public List<MoRMCondition> Condition { get; set; }
+        public List<MoRMJoin> Join { get; set; }
         public List<MoRMColumn> Column { get; set; }
     }
 }
