@@ -22,12 +22,12 @@ namespace MoRM.Read
                     Base.Append($"SELECT ");
                     foreach (var ColumnObj in Table.Column)
                     {
-                        string ColumnString = $"@{ColumnObj.ColumnName} ";
+                        string ColumnString = $"{ColumnObj.ColumnName} ";
 
                         Base.Append(ColumnString);
                     }
 
-                    string TableString = $"FROM @{Table.TableName} ";
+                    string TableString = $"FROM {Table.TableName} ";
 
                     Base.Append(TableString);
                 }

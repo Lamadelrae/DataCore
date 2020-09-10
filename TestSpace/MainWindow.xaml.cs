@@ -34,27 +34,14 @@ namespace TestSpace
             var Table = new MormTable
             { 
                 TableName = "Matthew",
-                Column = new List<MoRMColumn>
-                {
-                    new MoRMColumn { ColumnName = "HelloWorld"},
-                    new MoRMColumn { ColumnName = "HelloWorld"},
-                    new MoRMColumn { ColumnName = "HelloWorld" }
-                },
-                Join = new List<MoRMJoin>
-                { 
-                    new MoRMJoin { TableName = "Matthew", TableJoin = "Carol", TableNameIndex = "IdMatthew", TableJoinIndex = "IdCarol"}
-                },
                 Condition = new List<MoRMCondition>
                 {
-                    new MoRMCondition { ConditionName = "CarolName", ConditionValue = "32323"},
-                    new MoRMCondition { ConditionName = "Aassa", ConditionValue = "3232"},
-                    new MoRMCondition { ConditionName = "saasas", ConditionValue = "4343"},
-                    new MoRMCondition { ConditionName = "sasa", ConditionValue = "TESSS"}
+                    new MoRMCondition { ConditionName = "Column", ConditionValue = "Valueee"}
                 },
                 TableTypes = new MoRMTypes 
                 {
-                    isJoin = true,
-                    isSeparteSelect = true,
+                    isJoin = false,
+                    isSeparteSelect = false,
                     isConditioned = true
                 }
             }.SelectTable();
