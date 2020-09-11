@@ -7,8 +7,8 @@
     <ProjectGuid>{2DB951F5-8D26-467F-A6D2-359D590B9E37}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MoRM</RootNamespace>
-    <AssemblyName>MoRM</AssemblyName>
+    <RootNamespace>MQB</RootNamespace>
+    <AssemblyName>MQB</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -46,8 +46,10 @@
     <Compile Include="1 - Entity\MQBJoin.cs" />
     <Compile Include="1 - Entity\MQBTable.cs" />
     <Compile Include="1 - Entity\MQBTypes.cs" />
+    <Compile Include="1 - Entity\MQBUpdate.cs" />
     <Compile Include="2 - Create\CreateTable.cs" />
     <Compile Include="3 - Read\SelectTable.cs" />
+    <Compile Include="4 - Update\UpdateTable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

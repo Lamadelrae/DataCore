@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MQB.Entity;
 
-namespace MoRM.Read
+namespace MQB.Read
 {
     public static class SelectTables
     {
@@ -15,27 +15,25 @@ namespace MoRM.Read
             {
                 var Query = new StringBuilder();
 
-                var Base = new StringBuilder();
-
                 if (Table.TableTypes.isSeparteSelect)
                 {
-                    Base.Append($"SELECT ");
+                    Query.Append($"SELECT ");
                     foreach (var ColumnObj in Table.Column)
                     {
                         string ColumnString = $"{ColumnObj.ColumnName} ";
 
-                        Base.Append(ColumnString);
+                        Query.Append(ColumnString);
                     }
 
                     string TableString = $"FROM {Table.TableName} ";
 
-                    Base.Append(TableString);
+                    Query.Append(TableString);
                 }
                 else
                 {
                     string BaseString = $"SELECT * FROM {Table.TableName} ";
 
-                    Base.Append(BaseString);
+                    Query.Append(BaseString);
                 }
 
                 if (Table.TableTypes.isJoin)
@@ -44,7 +42,7 @@ namespace MoRM.Read
                     {
                         string JoinString = $"JOIN {JoinObj.TableJoin} ON {JoinObj.TableName}.{JoinObj.TableNameIndex} = {JoinObj.TableJoin}.{JoinObj.TableNameIndex} ";
 
-                        Base.Append(JoinString);
+                        Query.Append(JoinString);
                     }
                 }
 
@@ -52,24 +50,24 @@ namespace MoRM.Read
                 {
                     string BaseConditionString = "WHERE ";
 
-                    Base.Append(BaseConditionString);
+                    Query.Append(BaseConditionString);
 
                     foreach (var Condition in Table.Condition)
                     {
                         string ConditionString = $"{Condition.ConditionName} = '{Condition.ConditionValue}' AND ";
 
-                        Base.Append(ConditionString);
+                        Query.Append(ConditionString);
                     }
 
-                    if (Base.ToString().EndsWith("AND "))
-                        Base.Remove(Base.Length - 4, 3);
+                    if (Query.ToString().EndsWith("AND "))
+                        Query.Remove(Query.Length - 4, 3);
                 }
 
-                return Base.ToString();
+                return Query.ToString();
             }
             catch (Exception)
             {
-                return string.Empty;
+                throw;
             }
         }
     }

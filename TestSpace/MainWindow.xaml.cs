@@ -12,9 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using MoRM.Create;
-using MoRM.Read;
-using MoRM.Entity;
+using MQB.Create;
+using MQB.Read;
+using MQB.Entity;
 
 namespace TestSpace
 {
@@ -34,11 +34,11 @@ namespace TestSpace
             var Table = new MormTable
             { 
                 TableName = "Matthew",
-                Condition = new List<MoRMCondition>
+                Condition = new List<MQBCondition>
                 {
-                    new MoRMCondition { ConditionName = "Column", ConditionValue = "Valueee"}
+                    new MQBCondition { ConditionName = "Column", ConditionValue = "Valueee"}
                 },
-                TableTypes = new MoRMTypes 
+                TableTypes = new MQBTypes 
                 {
                     isJoin = false,
                     isSeparteSelect = false,
