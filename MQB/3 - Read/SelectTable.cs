@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using MQB.Entity;
 
@@ -20,18 +21,20 @@ namespace MQB.Read
                     Query.Append($"SELECT ");
                     foreach (var ColumnObj in Table.Column)
                     {
-                        string ColumnString = $"{ColumnObj.ColumnName} ";
+                        string ColumnName = Regex.Replace(ColumnObj.ColumnName, @"[^0-9a-zA-Z:,]+", "");
+                        string ColumnString = $"{ColumnName} ";
 
                         Query.Append(ColumnString);
                     }
 
-                    string TableString = $"FROM {Table.TableName} ";
+                    string TableName = Regex.Replace(Table.TableName, @"[^0-9a-zA-Z:,]+", "");
+                    string TableString = $"FROM @{TableName} ";
 
                     Query.Append(TableString);
                 }
                 else
                 {
-                    string BaseString = $"SELECT * FROM {Table.TableName} ";
+                    string BaseString = $"SELECT * FROM @{Table.TableName} ";
 
                     Query.Append(BaseString);
                 }
@@ -40,7 +43,7 @@ namespace MQB.Read
                 {
                     foreach (var JoinObj in Table.Join)
                     {
-                        string JoinString = $"JOIN {JoinObj.TableJoin} ON {JoinObj.TableName}.{JoinObj.TableNameIndex} = {JoinObj.TableJoin}.{JoinObj.TableNameIndex} ";
+                        string JoinString = $"JOIN @{JoinObj.TableJoin} ON @{JoinObj.TableName}.@{JoinObj.TableNameIndex} = @{JoinObj.TableJoin}.@{JoinObj.TableNameIndex} ";
 
                         Query.Append(JoinString);
                     }
@@ -54,7 +57,7 @@ namespace MQB.Read
 
                     foreach (var Condition in Table.Condition)
                     {
-                        string ConditionString = $"{Condition.ConditionName} = '{Condition.ConditionValue}' AND ";
+                        string ConditionString = $"@{Condition.ConditionName} = @{Condition.ConditionValue} AND ";
 
                         Query.Append(ConditionString);
                     }

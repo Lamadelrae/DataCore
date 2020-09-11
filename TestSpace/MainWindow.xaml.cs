@@ -34,10 +34,10 @@ namespace TestSpace
 
             using (var Table = new MQBTable())
             {
-                Table.TableName = "Matthew";
+                Table.TableName = "EXC110";
                 Table.TableTypes.isConditioned = true;
-                Table.Update.Add(new MQBUpdate { ColumnName = "ASDDAS", ColumnValue = "ASSASA"});
-                Table.Condition.Add(new MQBCondition { ConditionName = "AAA", ConditionValue = "AAASASA"});
+                Table.Update.Add(new MQBUpdate { ColumnName = "C110_CTR", ColumnValue = "9000"});
+                Table.Condition.Add(new MQBCondition { ConditionName = "C110_NUMCONTROLE", ConditionValue = "902882"});
 
                string Query =  Table.UpdateTables();
             }
