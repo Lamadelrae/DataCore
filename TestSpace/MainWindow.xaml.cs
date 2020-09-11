@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using MQB.Create;
 using MQB.Read;
 using MQB.Entity;
+using MQB.Update;
 
 namespace TestSpace
 {
@@ -31,9 +32,13 @@ namespace TestSpace
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
-            var Table = new MormTable
+            var Table = new MQBTable
             { 
                 TableName = "Matthew",
+                Update = new List<MQBUpdate>
+                {
+                    new MQBUpdate {ColumnName = "AAAAA", ColumnValue = "AAAAAA"}
+                },
                 Condition = new List<MQBCondition>
                 {
                     new MQBCondition { ConditionName = "Column", ConditionValue = "Valueee"}
@@ -44,7 +49,7 @@ namespace TestSpace
                     isSeparteSelect = false,
                     isConditioned = true
                 }
-            }.SelectTable();
+            }.UpdateTables();
 
             var debug = Table;
         }

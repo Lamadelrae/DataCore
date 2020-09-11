@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MQB.Entity;
 
-namespace MoRM.Update
+namespace MQB.Update
 {
     public static class UpdateTable
     {
@@ -18,24 +18,34 @@ namespace MoRM.Update
                 string BaseString = $"UPDATE {Table.TableName} SET ";
                 Query.Append(BaseString);
 
-                foreach (var Column in Table.Column)
+                foreach (var Update in Table.Update)
                 {
-                    string SetString = $"{Column.ColumnName} = {Column.ColumnValue}, ";
+                    string SetString = $"{Update.ColumnName} = '{Update.ColumnValue}', ";
 
                     Query.Append(SetString);
                 }
 
-                if(Table.TableTypes.isConditioned)
+                if (Query.ToString().EndsWith(", "))
+                    Query.Remove(Query.Length - 2, 1);
+
+                if (Table.TableTypes.isConditioned)
                 {
                     string WhereString = "WHERE ";
 
                     Query.Append(WhereString);
 
-                    foreach(var Condition in Table.Condition)
+                    foreach (var Condition in Table.Condition)
                     {
-                        string ConditionString = $"{Condition.ConditionName} = ";
+                        string ConditionString = $"{Condition.ConditionName} = '{Condition.ConditionValue}' AND ";
+
+                        Query.Append(ConditionString);
                     }
+
+                    if (Query.ToString().EndsWith("AND "))
+                        Query.Remove(Query.Length - 4, 4);
                 }
+
+                return Query.ToString();
             }
             catch (Exception)
             {
