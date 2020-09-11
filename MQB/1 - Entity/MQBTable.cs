@@ -6,13 +6,45 @@ using System.Threading.Tasks;
 
 namespace MQB.Entity
 {
-    public class MQBTable
+    public class MQBTable : IDisposable
     {
         public string TableName { get; set; }
-        public MQBTypes TableTypes { get; set; }
-        public List<MQBUpdate> Update { get; set; }
-        public List<MQBCondition> Condition { get; set; }
-        public List<MQBJoin> Join { get; set; }
-        public List<MQBColumn> Column { get; set; }
+
+        public MQBTypes TableTypes = new MQBTypes();
+
+        public List<MQBUpdate> Update = new List<MQBUpdate>();
+
+        public List<MQBCondition> Condition = new List<MQBCondition>();
+
+        public List<MQBJoin> Join = new List<MQBJoin>();
+
+        public List<MQBColumn> Column = new List<MQBColumn>();
+
+        private bool isDisposed = false;
+        public MQBTable()
+        {
+            Dispose(false);
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (isDisposed)
+            {
+                return;
+            }
+
+            if (disposing)
+            {
+                Dispose();
+            }
+
+            isDisposed = true;
+        }
     }
 }

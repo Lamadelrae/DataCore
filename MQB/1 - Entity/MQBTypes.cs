@@ -19,6 +19,7 @@ namespace MQB.Entity
         public bool isJoin { get; set; }
         public bool isConditioned { get; set; }
         public bool isSeparteSelect { get; set; }
+
     }
 
 }

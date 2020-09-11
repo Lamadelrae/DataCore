@@ -32,26 +32,15 @@ namespace TestSpace
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
-            var Table = new MQBTable
-            { 
-                TableName = "Matthew",
-                Update = new List<MQBUpdate>
-                {
-                    new MQBUpdate {ColumnName = "AAAAA", ColumnValue = "AAAAAA"}
-                },
-                Condition = new List<MQBCondition>
-                {
-                    new MQBCondition { ConditionName = "Column", ConditionValue = "Valueee"}
-                },
-                TableTypes = new MQBTypes 
-                {
-                    isJoin = false,
-                    isSeparteSelect = false,
-                    isConditioned = true
-                }
-            }.UpdateTables();
+            using (var Table = new MQBTable())
+            {
+                Table.TableName = "Matthew";
+                Table.TableTypes.isConditioned = true;
+                Table.Update.Add(new MQBUpdate { ColumnName = "ASDDAS", ColumnValue = "ASSASA"});
+                Table.Condition.Add(new MQBCondition { ConditionName = "AAA", ConditionValue = "AAASASA"});
 
-            var debug = Table;
+               string Query =  Table.UpdateTables();
+            }
         }
     }
 }

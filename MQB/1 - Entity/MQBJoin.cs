@@ -15,5 +15,27 @@ namespace MQB.Entity
         public string TableNameIndex { get; set; }
 
         public string TableJoinIndex { get; set; }
+
+        private bool isDisposed = false;
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool Disposing)
+        {
+            if (isDisposed)
+            {
+                return;
+            }
+
+            if (Disposing)
+            {
+                Dispose();
+            }
+            isDisposed = true;
+        }
     }
 }
