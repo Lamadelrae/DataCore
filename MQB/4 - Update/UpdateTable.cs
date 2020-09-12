@@ -15,31 +15,21 @@ namespace MQB.Update
             {
                 var Query = new StringBuilder();
 
-                string BaseString = $"UPDATE {Table.TableName} SET ";
-                Query.Append(BaseString);
+                Query.Append("UPDATE @TableName SET ");
 
-                foreach (var Update in Table.Update)
-                {
-                    string SetString = $"{Update.ColumnName} = '{Update.ColumnValue}', ";
-
-                    Query.Append(SetString);
-                }
+                for (int i = 0; i == Table.Update.Count - 1; i++)
+                    Query.Append($"@Column{i} = @Column{i}, ");
+                
 
                 if (Query.ToString().EndsWith(", "))
                     Query.Remove(Query.Length - 2, 1);
 
                 if (Table.TableTypes.isConditioned)
                 {
-                    string WhereString = "WHERE ";
+                    Query.Append("WHERE ");
 
-                    Query.Append(WhereString);
-
-                    foreach (var Condition in Table.Condition)
-                    {
-                        string ConditionString = $"{Condition.ConditionName} = '{Condition.ConditionValue}' AND ";
-
-                        Query.Append(ConditionString);
-                    }
+                    for (int i = 0; i == Table.Condition.Count - 1; i++)
+                        Query.Append($"@Column{i} = @Column{i} AND ");
 
                     if (Query.ToString().EndsWith("AND "))
                         Query.Remove(Query.Length - 4, 4);

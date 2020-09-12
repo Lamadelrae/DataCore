@@ -36,9 +36,16 @@ namespace TestSpace
             {
                 Table.TableName = "EXC110";
                 Table.TableTypes.isConditioned = true;
+                Table.TableTypes.isSeparteSelect = true;
+                Table.Column.Add(new MQBColumn { ColumnName = "AAA"});
+                Table.Column.Add(new MQBColumn { ColumnName = "AAA" });
+                Table.Column.Add(new MQBColumn { ColumnName = "AAA" });
+
+                Table.Update.Add(new MQBUpdate { ColumnName = "Matthew", ColumnValue = "Nhe"});
                 Table.Condition.Add(new MQBCondition { ConditionName = "C110_NUMCONTROLE", ConditionValue = "902882"});
 
                string Query =  Table.SelectTable();
+            
             }
         }
     }
