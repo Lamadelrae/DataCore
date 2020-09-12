@@ -36,10 +36,9 @@ namespace TestSpace
             {
                 Table.TableName = "EXC110";
                 Table.TableTypes.isConditioned = true;
-                Table.Update.Add(new MQBUpdate { ColumnName = "C110_CTR", ColumnValue = "9000"});
                 Table.Condition.Add(new MQBCondition { ConditionName = "C110_NUMCONTROLE", ConditionValue = "902882"});
 
-               string Query =  Table.UpdateTables();
+               string Query =  Table.SelectTable();
             }
         }
     }

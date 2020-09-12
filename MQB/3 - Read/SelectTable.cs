@@ -19,48 +19,28 @@ namespace MQB.Read
                 if (Table.TableTypes.isSeparteSelect)
                 {
                     Query.Append($"SELECT ");
-                    foreach (var ColumnObj in Table.Column)
-                    {
-                        string ColumnName = Regex.Replace(ColumnObj.ColumnName, @"[^0-9a-zA-Z:,]+", "");
-                        string ColumnString = $"{ColumnName} ";
 
-                        Query.Append(ColumnString);
-                    }
+                    for (int i = 0; i <= Table.Column.Count; i++)
+                        Query.Append($"@Column{i}");
 
-                    string TableName = Regex.Replace(Table.TableName, @"[^0-9a-zA-Z:,]+", "");
-                    string TableString = $"FROM @{TableName} ";
-
-                    Query.Append(TableString);
+                    Query.Append("FROM @TableName ");
                 }
                 else
-                {
-                    string BaseString = $"SELECT * FROM @{Table.TableName} ";
+                    Query.Append("SELECT * FROM @TableName ");
 
-                    Query.Append(BaseString);
-                }
 
                 if (Table.TableTypes.isJoin)
                 {
-                    foreach (var JoinObj in Table.Join)
-                    {
-                        string JoinString = $"JOIN @{JoinObj.TableJoin} ON @{JoinObj.TableName}.@{JoinObj.TableNameIndex} = @{JoinObj.TableJoin}.@{JoinObj.TableNameIndex} ";
-
-                        Query.Append(JoinString);
-                    }
+                    for (int i = 0; i <= Table.Join.Count; i++)
+                        Query.Append($"JOIN @TableJoin{i} ON @TableName{i}.@TableNameIndex{i} = @TableJoin{i}.@TableJoinIndex{i}");
                 }
 
                 if (Table.TableTypes.isConditioned)
                 {
-                    string BaseConditionString = "WHERE ";
+                    Query.Append("WHERE ");
 
-                    Query.Append(BaseConditionString);
-
-                    foreach (var Condition in Table.Condition)
-                    {
-                        string ConditionString = $"@{Condition.ConditionName} = @{Condition.ConditionValue} AND ";
-
-                        Query.Append(ConditionString);
-                    }
+                    for (int i = 0; i <= Table.Condition.Count; i++)
+                        Query.Append($"@ConditionName{i} = @ConditionValue{i} AND ");
 
                     if (Query.ToString().EndsWith("AND "))
                         Query.Remove(Query.Length - 4, 3);
