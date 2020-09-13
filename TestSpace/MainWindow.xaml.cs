@@ -16,6 +16,7 @@ using MQB.Create;
 using MQB.Read;
 using MQB.Entity;
 using MQB.Update;
+using System.Data.SqlClient;
 
 namespace TestSpace
 {
@@ -34,18 +35,26 @@ namespace TestSpace
 
             using (var Table = new MQBTable())
             {
-                Table.TableName = "EXC110";
-                Table.TableTypes.isConditioned = true;
+                Table.TableName = "Person";
                 Table.TableTypes.isSeparteSelect = true;
-                Table.Column.Add(new MQBColumn { ColumnName = "AAA"});
-                Table.Column.Add(new MQBColumn { ColumnName = "AAA" });
-                Table.Column.Add(new MQBColumn { ColumnName = "AAA" });
+                Table.TableTypes.isConditioned = true;
+                Table.Column.Add(new MQBColumn { ColumnName = "UUID" });
+                Table.Condition.Add(new MQBCondition { ConditionName = "PersonName", ConditionValue = "Matthew"});
 
-                Table.Update.Add(new MQBUpdate { ColumnName = "Matthew", ColumnValue = "Nhe"});
-                Table.Condition.Add(new MQBCondition { ConditionName = "C110_NUMCONTROLE", ConditionValue = "902882"});
+                var sql = Table.SelectTable();
 
-               string Query =  Table.SelectTable();
-            
+                using (var con = new SqlConnection(@"Server=Localhost\SQL2019;Database=FM;User Id=sa;Password=pass;"))
+                {
+                    sql.Connection = con;
+                    con.Open();
+                    var reader = sql.ExecuteReader();
+
+                    string test = string.Empty;
+                    while (reader.Read())
+                    {
+                        test = reader[0].ToString();
+                    }
+                }
             }
         }
     }
