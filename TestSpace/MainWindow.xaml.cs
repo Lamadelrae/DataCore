@@ -36,12 +36,13 @@ namespace TestSpace
             using (var Table = new MQBMain())
             {
                 Table.Command.Connection = @"Server = Localhost\SQL2019; Database = FM; User Id = sa; Password = pass;";
-                Table.TableName = "Person";
-                Table.Update.Add(new MQBUpdate { ColumnName= "PersonName", ColumnValue = "Kekekeke"});
-                Table.TableTypes.isConditioned = true;
-                Table.Condition.Add(new MQBCondition { ConditionName = "UUID", ConditionValue = "87D09E3A-A0F0-452E-90B6-06F71859C5C3" });
+                Table.TableName = "TestCreate";
+                Table.Column.Add(new MQBColumn { ColumnName = "Herro", ColumnType = "varchar", ColumnSize = 30});
+                Table.Column.Add(new MQBColumn { ColumnName = "Herro1", ColumnType = "varchar", ColumnSize = 30 });
+                Table.Column.Add(new MQBColumn { ColumnName = "Herro2", ColumnType = "varchar", ColumnSize = 30 });
+                Table.Column.Add(new MQBColumn { ColumnName = "Herro3", ColumnType = "varchar", ColumnSize = 30 });
 
-                var a = Table.UpdateTables();
+                var a = Table.CreateTable();
 
                 Table.Command.SqlCommand = a;
 

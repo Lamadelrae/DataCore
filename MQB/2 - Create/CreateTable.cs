@@ -1,6 +1,7 @@
 ﻿using MQB.Entity;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -10,7 +11,7 @@ namespace MQB.Create
 {
     public static class CreateTables
     {
-        public static string CreateTable(this MQBMain Table)
+        public static SqlCommand CreateTable(this MQBMain Table)
         {
             try
             {
@@ -36,11 +37,11 @@ namespace MQB.Create
 
                 Query.Append(EndQuery);
 
-                return Query.ToString();
+                return new SqlCommand(Query.ToString());
             }
             catch(Exception)
             {
-                return string.Empty;
+                throw;
             }
         }
 
