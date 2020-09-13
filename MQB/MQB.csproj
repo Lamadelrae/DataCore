@@ -48,9 +48,10 @@
     <Compile Include="1 - Entity\MQB.cs" />
     <Compile Include="1 - Entity\MQBTypes.cs" />
     <Compile Include="1 - Entity\MQBUpdate.cs" />
-    <Compile Include="2 - Create\CreateTable.cs" />
-    <Compile Include="3 - Read\SelectTable.cs" />
-    <Compile Include="4 - Update\UpdateTable.cs" />
+    <Compile Include="2 - Create\CreateTables.cs" />
+    <Compile Include="2 - Create\InsertIntoTables.cs" />
+    <Compile Include="3 - Read\SelectTables.cs" />
+    <Compile Include="4 - Update\UpdateTables.cs" />
     <Compile Include="6 - Commands\MQBCommands.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

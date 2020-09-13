@@ -8,9 +8,9 @@ using MQB.Entity;
 
 namespace MQB.Update
 {
-    public static class UpdateTable
+    public static class UpdateTables
     {
-        public static SqlCommand UpdateTables(this MQBMain Table)
+        public static SqlCommand UpdateTable(this MQBMain Table)
         {
             try
             {
