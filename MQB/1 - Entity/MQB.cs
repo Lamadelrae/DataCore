@@ -10,23 +10,35 @@ namespace MQB.Entity
     {
         public string TableName { get; set; }
 
-        public MQBTypes TableTypes = new MQBTypes();
+        public MQBTypes TableTypes { get; set; }
 
-        public List<MQBUpdate> Update = new List<MQBUpdate>();
+        public List<MQBUpdate> Update { get; set; }
 
-        public List<MQBCondition> Condition = new List<MQBCondition>();
+        public List<MQBCondition> Condition { get; set; }
 
-        public List<MQBJoin> Join = new List<MQBJoin>();
+        public List<MQBJoin> Join { get; set; }
 
-        public List<MQBColumn> Column = new List<MQBColumn>();
+        public List<MQBColumn> Column { get; set; }
 
-        public MQBCommand Command = new MQBCommand();
+        public MQBCommand Command { get; set; }
 
         private bool isDisposed = false;
 
         public MQB()
         {
             Dispose(false);
+
+            TableTypes = new MQBTypes();
+
+            Update = new List<MQBUpdate>();
+
+            Condition = new List<MQBCondition>();
+
+            Join = new List<MQBJoin>();
+
+            Column = new List<MQBColumn>();
+
+            Command = new MQBCommand();
         }
 
         public void Dispose()
