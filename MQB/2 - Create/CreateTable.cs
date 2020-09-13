@@ -10,13 +10,11 @@ namespace MQB.Create
 {
     public static class CreateTables
     {
-        public static string CreateTable(this Entity.MQB Table)
+        public static string CreateTable(this MQBMain Table)
         {
             try
             {
-                string TableNamePurified = Regex.Replace(Table.TableName, @"[^0-9a-zA-Z:,]+", "");
-
-                string BaseQuery = $"CREATE TABLE @{TableNamePurified} ( ";
+                string BaseQuery = $"CREATE TABLE {Table.TableName} ( ";
 
                 var Query = new StringBuilder();
 
@@ -24,11 +22,9 @@ namespace MQB.Create
 
                 foreach (var Column in Table.Column)
                 {
-                    string ColumnName = Regex.Replace(Column.ColumnName, @"[^0-9a-zA-Z:,]+", "");
-                    string ColumnType = Regex.Replace(Column.ColumnType, @"[^0-9a-zA-Z:,]+", "");
                     int ColumnSize = Column.ColumnSize;
 
-                    string ColumnString = $" @{ColumnName} {ColumnType}({ColumnSize}), ";
+                    string ColumnString = $" {Column.ColumnName} {Column.ColumnType}({Column.ColumnSize}), ";
 
                     Query.Append(ColumnString);
                 }
@@ -47,5 +43,6 @@ namespace MQB.Create
                 return string.Empty;
             }
         }
+
     }
 }

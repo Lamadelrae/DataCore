@@ -7,7 +7,7 @@
     <ProjectGuid>{2DB951F5-8D26-467F-A6D2-359D590B9E37}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Mqb</RootNamespace>
+    <RootNamespace>MQB</RootNamespace>
     <AssemblyName>MQB</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -51,8 +51,11 @@
     <Compile Include="2 - Create\CreateTable.cs" />
     <Compile Include="3 - Read\SelectTable.cs" />
     <Compile Include="4 - Update\UpdateTable.cs" />
+    <Compile Include="6 - Commands\MQBCommands.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="5- Delete\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

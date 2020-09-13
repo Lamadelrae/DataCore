@@ -16,6 +16,7 @@ using MQB.Create;
 using MQB.Read;
 using MQB.Entity;
 using MQB.Update;
+using MQB.Commands;
 using System.Data.SqlClient;
 
 namespace TestSpace
@@ -32,12 +33,19 @@ namespace TestSpace
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            using (var Table = new MQB.Entity.MQB())
+            using (var Table = new MQBMain())
             {
                 Table.Command.Connection = @"Server = Localhost\SQL2019; Database = FM; User Id = sa; Password = pass;";
                 Table.TableName = "Person";
-                Table.Command.SqlCommand = Table.SelectTable();
-                var result = Table.Command.Result();
+                Table.Update.Add(new MQBUpdate { ColumnName= "PersonName", ColumnValue = "Kekekeke"});
+                Table.TableTypes.isConditioned = true;
+                Table.Condition.Add(new MQBCondition { ConditionName = "UUID", ConditionValue = "87D09E3A-A0F0-452E-90B6-06F71859C5C3" });
+
+                var a = Table.UpdateTables();
+
+                Table.Command.SqlCommand = a;
+
+                Table.Command.Execute();
             }
         }
     }
