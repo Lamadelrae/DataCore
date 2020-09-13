@@ -7,7 +7,7 @@
     <ProjectGuid>{2DB951F5-8D26-467F-A6D2-359D590B9E37}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MQB</RootNamespace>
+    <RootNamespace>Mqb</RootNamespace>
     <AssemblyName>MQB</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -43,8 +43,9 @@
   <ItemGroup>
     <Compile Include="1 - Entity\MQBColumn.cs" />
     <Compile Include="1 - Entity\MQBCondition.cs" />
+    <Compile Include="1 - Entity\MQBCommand.cs" />
     <Compile Include="1 - Entity\MQBJoin.cs" />
-    <Compile Include="1 - Entity\MQBTable.cs" />
+    <Compile Include="1 - Entity\MQB.cs" />
     <Compile Include="1 - Entity\MQBTypes.cs" />
     <Compile Include="1 - Entity\MQBUpdate.cs" />
     <Compile Include="2 - Create\CreateTable.cs" />

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MQB.Entity
 {
-    public class MQBTable : IDisposable
+    public class MQB : IDisposable
     {
         public string TableName { get; set; }
 
@@ -20,8 +20,11 @@ namespace MQB.Entity
 
         public List<MQBColumn> Column = new List<MQBColumn>();
 
+        public MQBCommand Command = new MQBCommand();
+
         private bool isDisposed = false;
-        public MQBTable()
+
+        public MQB()
         {
             Dispose(false);
         }

@@ -10,7 +10,7 @@ namespace MQB.Create
 {
     public static class CreateTables
     {
-        public static string CreateTable(this MQBTable Table)
+        public static string CreateTable(this Entity.MQB Table)
         {
             try
             {

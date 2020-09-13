@@ -32,29 +32,12 @@ namespace TestSpace
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
-            using (var Table = new MQBTable())
+            using (var Table = new MQB.Entity.MQB())
             {
+                Table.Command.Connection = @"Server = Localhost\SQL2019; Database = FM; User Id = sa; Password = pass;";
                 Table.TableName = "Person";
-                Table.TableTypes.isSeparteSelect = true;
-                Table.TableTypes.isConditioned = true;
-                Table.Column.Add(new MQBColumn { ColumnName = "UUID" });
-                Table.Condition.Add(new MQBCondition { ConditionName = "PersonName", ConditionValue = "Matthew"});
-
-                var sql = Table.SelectTable();
-
-                using (var con = new SqlConnection(@"Server=Localhost\SQL2019;Database=FM;User Id=sa;Password=pass;"))
-                {
-                    sql.Connection = con;
-                    con.Open();
-                    var reader = sql.ExecuteReader();
-
-                    string test = string.Empty;
-                    while (reader.Read())
-                    {
-                        test = reader[0].ToString();
-                    }
-                }
+                Table.Command.SqlCommand = Table.SelectTable();
+                var result = Table.Command.Result();
             }
         }
     }

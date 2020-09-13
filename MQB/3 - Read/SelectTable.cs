@@ -7,11 +7,12 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using MQB.Entity;
 
+
 namespace MQB.Read
 {
     public static class SelectTables
     {
-        public static SqlCommand SelectTable(this MQBTable Table)
+        public static SqlCommand SelectTable(this Entity.MQB Table)
         {
             try
             {
@@ -68,6 +69,35 @@ namespace MQB.Read
                 return SqlCommand;
             }
             catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static List<object[]> Result(this MQBCommand Connection)
+        {
+            try
+            {
+                using (var con = new SqlConnection(Connection.Connection))
+                {
+                    Connection.SqlCommand.Connection = con;
+
+                    con.Open();
+                    var reader = Connection.SqlCommand.ExecuteReader();
+
+                    var ListData = new List<object[]>();
+
+                    while (reader.Read())
+                    {
+                        var myObject = new object[reader.FieldCount];
+                        reader.GetValues(myObject);
+                        ListData.Add(myObject);
+                    }
+
+                    return ListData;
+                }
+            }
+            catch(Exception)
             {
                 throw;
             }

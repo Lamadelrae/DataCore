@@ -9,7 +9,7 @@ namespace MQB.Update
 {
     public static class UpdateTable
     {
-        public static string UpdateTables(this MQBTable Table)
+        public static string UpdateTables(this Entity.MQB Table)
         {
             try
             {
