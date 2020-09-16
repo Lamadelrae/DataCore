@@ -10,16 +10,16 @@ namespace MQB.Create
 {
     public static class InsertIntoTables
     {
-        public static SqlCommand InsertIntoTable(this MQBMain Table)
-        {
-            try
-            {
+        //public static SqlCommand InsertIntoTable(this MQBMain Table)
+        //{
+        //    try
+        //    {
 
-            }
-            catch(Exception)
-            {
+        //    }
+        //    catch(Exception)
+        //    {
 
-            }
-        }
+        //    }
+        //}
     }
 }

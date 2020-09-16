@@ -35,7 +35,27 @@ namespace MQB.Read
                 if (Table.TableTypes.isJoin)
                 {
                     foreach (var Join in Table.Join)
-                        Query.Append($"JOIN {Join.TableJoin} ON {Join.TableJoin}.{Join.TableJoinIndex} = {Join.TableName}.{Join.TableNameIndex}");
+                    {
+                        string JoinType = string.Empty;
+
+                        switch (Join.JoinType)
+                        {
+                            case MQBJoinTypes.Left:
+                                JoinType = "LEFT";
+                                break;
+                            case MQBJoinTypes.Right:
+                                JoinType = "RIGHT";
+                                break;
+                            case MQBJoinTypes.Full:
+                                JoinType = "FULL";
+                                break;
+                            case MQBJoinTypes.None:
+                                JoinType = string.Empty;
+                                break;
+                        }
+
+                        Query.Append($"{JoinType} JOIN {Join.TableJoin} ON {Join.TableJoin}.{Join.TableJoinIndex} = {Join.TableName}.{Join.TableNameIndex} ");
+                    }
                 }
 
                 if (Table.TableTypes.isConditioned)
