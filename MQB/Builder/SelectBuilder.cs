@@ -8,12 +8,14 @@ using System.Threading.Tasks;
 
 namespace MQB.Builder
 {
-    public class QueryBuilder<T> : QueryObject
+    public class SelectBuilder<T> : SelectObject
     {
         private string TableName { get; set; } = typeof(T).Name;
 
-        public QueryBuilder<T> Select(params string[] columns)
+        public SelectBuilder<T> Select(params string[] columns)
         {
+            base.IsRaw = false;
+
             if (columns.Count() == 0)
                 base.Select = "*";
             else
@@ -28,14 +30,22 @@ namespace MQB.Builder
             return this;
         }
 
-        public QueryBuilder<T> Join(string join)
+        public SelectBuilder<T> RawSelect(string select)
+        {
+            base.IsRaw = true;
+            base.Select = select;
+
+            return this;
+        }
+
+        public SelectBuilder<T> Join(string join)
         {
             base.Join = join;
 
             return this;
         }
 
-        public QueryBuilder<T> Where(string where, params SqlParameter[] sqlParameters)
+        public SelectBuilder<T> Where(string where, params SqlParameter[] sqlParameters)
         {
             foreach (var param in sqlParameters)
                 SqlParameters.Add(param);
@@ -45,14 +55,21 @@ namespace MQB.Builder
             return this;
         }
 
-        public QueryBuilder<T> Build()
+        public SelectBuilder<T> Build()
         {
-            string baseQuery = "SELECT ";
+            string baseQuery = string.Empty;
 
-            if (string.IsNullOrEmpty(base.Select) != true)
-                baseQuery += $"{base.Select} ";
+            if (!IsRaw)
+            {
+                baseQuery += "SELECT ";
 
-            baseQuery += $"FROM {TableName} ";
+                if (string.IsNullOrEmpty(base.Select) != true)
+                    baseQuery += $"{base.Select} ";
+
+                baseQuery += $"FROM {TableName} ";
+            }
+            else
+                baseQuery += base.Select;
 
             if (string.IsNullOrEmpty(base.Join) != true)
                 baseQuery += $"{base.Join} ";

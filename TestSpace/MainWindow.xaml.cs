@@ -33,11 +33,6 @@ namespace TestSpace
         public MainWindow()
         {
             InitializeComponent();
-
-            var query = new QueryBuilder<user>()
-                .Select()
-                .Build()
-                .GetSqlCommand();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

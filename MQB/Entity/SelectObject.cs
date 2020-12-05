@@ -7,16 +7,17 @@ using System.Threading.Tasks;
 
 namespace MQB.Entity
 {
-    public class QueryObject
+    public class SelectObject
     {
-
         protected string Select { get; set; }
+
+        protected bool IsRaw { get; set; }
 
         protected string Join { get; set; }
 
         protected string Where { get; set; }
 
-        protected string BaseQuery { get; set; }
+        public string BaseQuery { get; set; }
 
         protected List<SqlParameter> SqlParameters { get; set; } = new List<SqlParameter>();
     }

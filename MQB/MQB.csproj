@@ -41,8 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Builder\QueryBuilder.cs" />
-    <Compile Include="Entity\QueryObject.cs" />
+    <Compile Include="Builder\InsertBuilder.cs" />
+    <Compile Include="Builder\MQB.cs" />
+    <Compile Include="Builder\SelectBuilder.cs" />
+    <Compile Include="Entity\InsertObject.cs" />
+    <Compile Include="Entity\SelectObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
