@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2DB951F5-8D26-467F-A6D2-359D590B9E37}</ProjectGuid>
+    <ProjectGuid>{25460CDC-834D-4CE3-9D93-9C48727D4F9E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MQB</RootNamespace>
@@ -41,22 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="1 - Entity\MQBColumn.cs" />
-    <Compile Include="1 - Entity\MQBCondition.cs" />
-    <Compile Include="1 - Entity\MQBCommand.cs" />
-    <Compile Include="1 - Entity\MQBJoin.cs" />
-    <Compile Include="1 - Entity\MQB.cs" />
-    <Compile Include="1 - Entity\MQBTypes.cs" />
-    <Compile Include="1 - Entity\MQBUpdate.cs" />
-    <Compile Include="2 - Create\CreateTables.cs" />
-    <Compile Include="2 - Create\InsertIntoTables.cs" />
-    <Compile Include="3 - Read\SelectTables.cs" />
-    <Compile Include="4 - Update\UpdateTables.cs" />
-    <Compile Include="6 - Commands\MQBCommands.cs" />
+    <Compile Include="Builder\QueryBuilder.cs" />
+    <Compile Include="Entity\QueryObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="5- Delete\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

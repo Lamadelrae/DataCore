@@ -96,7 +96,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MQB\MQB.csproj">
-      <Project>{2db951f5-8d26-467f-a6d2-359d590b9e37}</Project>
+      <Project>{25460cdc-834d-4ce3-9d93-9c48727d4f9e}</Project>
       <Name>MQB</Name>
     </ProjectReference>
   </ItemGroup>

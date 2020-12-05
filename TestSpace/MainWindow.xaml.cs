@@ -12,34 +12,44 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using MQB.Create;
-using MQB.Read;
-using MQB.Entity;
-using MQB.Update;
-using MQB.Commands;
 using System.Data.SqlClient;
+using MQB.Builder;
 
 namespace TestSpace
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    /// 
+    public class user
+    {
+        public string name { get; set; }
+
+        public string password { get; set; }
+    }
+
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
+
+            var query = new QueryBuilder<user>()
+                .Select()
+                .Build()
+                .GetSqlCommand();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            using (var Table = new MQBMain())
-            {
-                Table.Command.Connection = @"Server = Localhost\SQL2019; Database = FM; User Id = sa; Password = pass;";
-                Table.TableName = "Teste";
-                Table.TableTypes.isJoin = true;
-               
-            }
+        }
+
+        protected void OnMouseDoubleClick(object sender, EventArgs args)
+        {
+            var row = sender as DataGridRow;
+            if (row != null && row.IsSelected)
+                MessageBox.Show("Click");
+
         }
     }
 }

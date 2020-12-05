@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30309.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestSpace", "TestSpace\TestSpace.csproj", "{1011FD81-5830-4560-BA5E-0CC504913909}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MQB", "MQB\MQB.csproj", "{2DB951F5-8D26-467F-A6D2-359D590B9E37}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MQB", "MQB\MQB.csproj", "{25460CDC-834D-4CE3-9D93-9C48727D4F9E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{1011FD81-5830-4560-BA5E-0CC504913909}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1011FD81-5830-4560-BA5E-0CC504913909}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1011FD81-5830-4560-BA5E-0CC504913909}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2DB951F5-8D26-467F-A6D2-359D590B9E37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2DB951F5-8D26-467F-A6D2-359D590B9E37}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2DB951F5-8D26-467F-A6D2-359D590B9E37}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2DB951F5-8D26-467F-A6D2-359D590B9E37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25460CDC-834D-4CE3-9D93-9C48727D4F9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25460CDC-834D-4CE3-9D93-9C48727D4F9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25460CDC-834D-4CE3-9D93-9C48727D4F9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25460CDC-834D-4CE3-9D93-9C48727D4F9E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
