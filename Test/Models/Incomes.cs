@@ -9,7 +9,7 @@ namespace Test
 {
     public class Incomes
     {
-        public Incomes(DataRow row = null)
+        public Incomes(DataRow row)
         {
             Id = (int)row["Id"];
             User_Id = (int)row["User_Id"];
