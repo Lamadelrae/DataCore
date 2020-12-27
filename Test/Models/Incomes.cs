@@ -11,14 +11,13 @@ namespace Test
     {
         public Incomes(DataRow row = null)
         {
-            if (row != null)
-            {
-                Id = (int)row["Id"];
-                User_Id = (int)row["User_Id"];
-                Description = (string)row["Description"];
-                Value = (decimal)row["Value"];
-            }
+            Id = (int)row["Id"];
+            User_Id = (int)row["User_Id"];
+            Description = (string)row["Description"];
+            Value = (decimal)row["Value"];
         }
+
+        public Incomes() { }
 
         public int Id { get; set; }
 

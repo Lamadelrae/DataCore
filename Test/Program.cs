@@ -16,12 +16,7 @@ namespace Test
         {
             var context = new DbContext();
 
-            var incomes = context.Incomes.ExecuteQuery("SELECT * FROM Incomes WHERE Id = @Id", new SqlParameter("@Id", 1));
-
-            foreach (var income in incomes)
-                Console.WriteLine(income.Description + " " + income.Value);
-
-            Console.ReadLine();
+            var incomes = context.Incomes.ExecuteQuery("SELECT * FROM Incomes");
         }
     }
 }
