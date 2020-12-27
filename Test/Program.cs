@@ -16,7 +16,7 @@ namespace Test
         {
             var context = new DbContext();
 
-            var incomes = context.Incomes.ExecuteQuery("SELECT * FROM Incomes").FirstOrDefault();
+            var incomes = context.Incomes.ExecuteQuery("SELECT * FROM Incomes");
         }
     }
 }

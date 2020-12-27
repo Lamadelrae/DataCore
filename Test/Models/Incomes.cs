@@ -9,17 +9,20 @@ namespace Test
 {
     public class Incomes
     {
-        public Incomes(DataRow row)
+        public Incomes(DataRow row = null)
         {
-            Id = (int)row["Id"];
-            User_Id = (int)row["User_Id"];
-            Description = (string)row["Description"];
-            Value = (decimal)row["Value"];
+            if (row != null)
+            {
+                Id = (int)row["Id"];
+                User_Id = (int)row["User_Id"];
+                Description = (string)row["Description"];
+                Value = (decimal)row["Value"];
+            }
         }
 
         public int Id { get; set; }
 
-        public int User_Id {get; set;}
+        public int User_Id { get; set; }
 
         public string Description { get; set; }
 
