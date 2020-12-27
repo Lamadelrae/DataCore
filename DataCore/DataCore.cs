@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Text;
 
 namespace DataCore
 {
-    public class DataCore
+    public class DataCore<T> where T : class
     {
-        private SqlConnection Connection { get; set; } = new SqlConnection();
+        private SqlConnection Connection { get; set; }
 
         public DataCore(SqlConnection connection)
         {
@@ -44,7 +47,7 @@ namespace DataCore
             }
         }
 
-        public List<T> ExecuteQuery<T>(string sql, params SqlParameter[] sqlParams)
+        public List<T> ExecuteQuery(string sql, params SqlParameter[] sqlParams)
         {
             var list = new List<T>();
 
@@ -72,7 +75,7 @@ namespace DataCore
             }
         }
 
-        public List<T> ExecuteQuery<T>(string sql)
+        public List<T> ExecuteQuery(string sql)
         {
             var list = new List<T>();
 
