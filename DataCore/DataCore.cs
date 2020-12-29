@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
 using System.Text;
 
 namespace DataCore
@@ -49,8 +50,6 @@ namespace DataCore
 
         public List<T> ExecuteQuery(string sql, params SqlParameter[] sqlParams)
         {
-            var list = new List<T>();
-
             using (var connection = Connection)
             {
                 var sqlCommand = new SqlCommand(sql, connection);
@@ -64,21 +63,12 @@ namespace DataCore
 
                 connection.Close();
 
-                foreach (var row in dataTable.Rows)
-                {
-                    T item = (T)Activator.CreateInstance(typeof(T), row);
-
-                    list.Add(item);
-                }
-
-                return list;
+                return GetObjList(dataTable);
             }
         }
 
         public List<T> ExecuteQuery(string sql)
         {
-            var list = new List<T>();
-
             using (var connection = Connection)
             {
                 var sqlCommand = new SqlCommand(sql, connection);
@@ -89,14 +79,7 @@ namespace DataCore
 
                 connection.Close();
 
-                foreach (var row in dataTable.Rows)
-                {
-                    T item = (T)Activator.CreateInstance(typeof(T), row);
-
-                    list.Add(item);
-                }
-
-                return list;
+                return GetObjList(dataTable);
             }
         }
 
@@ -110,6 +93,43 @@ namespace DataCore
             dataAdapter.Dispose();
 
             return dataTable;
+        }
+
+        private List<T> GetObjList(DataTable table)
+        {
+            try
+            {
+                List<T> list = new List<T>();
+
+                foreach (DataRow row in table.Rows)
+                {
+                    T obj = (T)Activator.CreateInstance(typeof(T));
+
+                    foreach (var prop in obj.GetType().GetProperties())
+                    {
+                        try
+                        {
+                            var propertyInfo = obj.GetType().GetProperty(prop.Name);
+
+                            var typedValue = Convert.ChangeType(row[prop.Name], propertyInfo.PropertyType);
+
+                            propertyInfo.SetValue(obj, typedValue);
+                        }
+                        catch
+                        {
+                            continue;
+                        }
+                    }
+
+                    list.Add(obj);
+                }
+
+                return list;
+            }
+            catch
+            {
+                return null;
+            }
         }
     }
 }

@@ -8,8 +8,8 @@ using DataCore;
 
 namespace Test.Context
 {
-    public class DbContext
+    public class DbContext : DbConnection
     {
-        public DataCore<Incomes> Incomes { get; set; } = new DataCore<Incomes>(DbConnection.GetInstance.Connection);
+        public DataCore<Incomes> Incomes { get; set; } = new DataCore<Incomes>(new DbConnection().Connection);
     }
 }

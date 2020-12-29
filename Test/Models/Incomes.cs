@@ -9,16 +9,6 @@ namespace Test
 {
     public class Incomes
     {
-        public Incomes(DataRow row)
-        {
-            Id = (int)row["Id"];
-            User_Id = (int)row["User_Id"];
-            Description = (string)row["Description"];
-            Value = (decimal)row["Value"];
-        }
-
-        public Incomes() { }
-
         public int Id { get; set; }
 
         public int User_Id { get; set; }

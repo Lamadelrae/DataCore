@@ -7,26 +7,8 @@ using System.Threading.Tasks;
 
 namespace Test.Context
 {
-    public sealed class DbConnection
+    public class DbConnection
     {
-        private static DbConnection Instance = null;
-
-        public static DbConnection GetInstance
-        {
-            get
-            {
-                if (Instance == null)
-                    Instance = new DbConnection();
-
-                return Instance;
-            }
-        }
-
-        DbConnection()
-        {
-            Connection = new SqlConnection(@"Server=Localhost\SQL2019;Database=FinanceManager;User Id=sa;Password=pass;");
-        }
-
-        public SqlConnection Connection { get; private set; }
+        public SqlConnection Connection { get; private set; } = new SqlConnection(@"Server=Localhost\SQL2019;Database=FinanceManager;User Id=sa;Password=pass;");
     }
 }
