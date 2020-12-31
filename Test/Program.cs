@@ -16,7 +16,7 @@ namespace Test
         {
             var context = new DbContext();
 
-            List<Incomes> incomes = context.Incomes.ExecuteQuery("SELECT * FROM Incomes");
+            List<Incomes> incomes = context.Incomes.ExecuteQuery("SELECT * FROM Incomes WHERE Id = @Id", SqlParam.CreateParam("Id", 1));
         }
     }
 }
