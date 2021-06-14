@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Test
+namespace Tests.Models
 {
-    public class Incomes
+    public class Income
     {
         public int Id { get; set; }
 
@@ -16,5 +15,7 @@ namespace Test
         public string Description { get; set; }
 
         public decimal Value { get; set; }
+
+        public string Status { get; set; }
     }
 }

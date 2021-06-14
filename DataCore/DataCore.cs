@@ -9,7 +9,7 @@ using System.Text;
 
 namespace DataCore
 {
-    public class DataCore<T> where T : class
+    public class DataCore<T> where T : class, new()
     {
         private SqlConnection Connection { get; set; }
 
@@ -20,79 +20,64 @@ namespace DataCore
 
         public void ExecuteCommand(string sql)
         {
-            using (var connection = Connection)
-            {
-                var sqlCommand = new SqlCommand(sql, connection);
-                connection.Open();
+            SqlCommand sqlCommand = new SqlCommand(sql, Connection);
 
-                sqlCommand.ExecuteNonQuery();
-
-                connection.Close();
-            }
+            Connection.Open();
+            sqlCommand.ExecuteNonQuery();
+            Connection.Close();
         }
 
-        public void ExecuteCommand(string sql, params SqlParameter[] sqlParams)
+        public void ExecuteCommand(string sql, object param)
         {
-            using (var connection = Connection)
-            {
-                var sqlCommand = new SqlCommand(sql, connection);
+            SqlCommand sqlCommand = new SqlCommand(sql, Connection);
+            sqlCommand.Parameters.AddRange(GetParameters(param).ToArray());
 
-                if (sqlParams.Length > 0)
-                    sqlCommand.Parameters.AddRange(sqlParams);
-
-                connection.Open();
-
-                sqlCommand.ExecuteNonQuery();
-
-                connection.Close();
-            }
+            Connection.Open();
+            sqlCommand.ExecuteNonQuery();
+            Connection.Close();
         }
 
-        public List<T> ExecuteQuery(string sql, params SqlParameter[] sqlParams)
+        public List<T> ExecuteQuery(string sql, object param)
         {
-            using (var connection = Connection)
-            {
-                var sqlCommand = new SqlCommand(sql, connection);
+            SqlCommand sqlCommand = new SqlCommand(sql, Connection);
+            sqlCommand.Parameters.AddRange(GetParameters(param).ToArray());
 
-                if (sqlParams.Length > 0)
-                    sqlCommand.Parameters.AddRange(sqlParams);
+            Connection.Open();
+            DataTable dataTable = GetDataTable(sqlCommand);
+            Connection.Close();
 
-                connection.Open();
-
-                var dataTable = GetDataTable(sqlCommand);
-
-                connection.Close();
-
-                return GetObjList(dataTable);
-            }
+            return GetObjList(dataTable);
         }
 
         public List<T> ExecuteQuery(string sql)
         {
-            using (var connection = Connection)
-            {
-                var sqlCommand = new SqlCommand(sql, connection);
+            SqlCommand sqlCommand = new SqlCommand(sql, Connection);
 
-                connection.Open();
+            Connection.Open();
+            DataTable dataTable = GetDataTable(sqlCommand);
+            Connection.Close();
 
-                var dataTable = GetDataTable(sqlCommand);
-
-                connection.Close();
-
-                return GetObjList(dataTable);
-            }
+            return GetObjList(dataTable);
         }
 
         private DataTable GetDataTable(SqlCommand sqlCommand)
         {
-            var dataTable = new DataTable();
+            DataTable dataTable = new DataTable();
 
-            var dataAdapter = new SqlDataAdapter(sqlCommand);
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(sqlCommand);
             dataAdapter.Fill(dataTable);
 
             dataAdapter.Dispose();
 
             return dataTable;
+        }
+
+        private IEnumerable<SqlParameter> GetParameters(object param)
+        {
+            foreach (PropertyInfo property in param.GetType().GetProperties())
+            {
+                yield return new SqlParameter($"@{property.Name}", property.GetValue(param));
+            }
         }
 
         private List<T> GetObjList(DataTable table)
