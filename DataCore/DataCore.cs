@@ -11,6 +11,11 @@ namespace DataCore
 {
     public class DataCore<T> where T : class, new()
     {
+        /// <summary>
+        /// Never use the keyword "Using" with this property. 
+        /// Because of how JIT handles reference types and value types, 
+        /// it will not create a copy of the instance and end it in the execution block, it will end the property's instance.
+        /// </summary>s
         private SqlConnection Connection { get; set; }
 
         public DataCore(SqlConnection connection)
